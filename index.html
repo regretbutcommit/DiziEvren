@@ -8,20 +8,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg: #0e0f13; --bg2: #16181f; --card: #1e2029; --card2: #252836;
-  --border: #2e3144; --accent: #e63946; --accent2: #ff6b6b;
-  --gold: #ffd166; --green: #06d6a0; --orange: #f4a261; --blue: #4cc9f0;
-  --text: #f0f2f8; --text2: #8b91b0; --text3: #454860;
+  --bg: #f0fdfc; --bg2: #e0f7f5; --card: #ffffff; --card2: #f5fffe;
+  --border: #b2e8e4; --accent: #e63946; --accent2: #d62839;
+  --gold: #d4860a; --green: #0a9e7a; --orange: #e07a30; --blue: #0096b4;
+  --text: #0d3b36; --text2: #2d7068; --text3: #7bbdb8;
+}
+body {
+  background: linear-gradient(160deg, #ffffff 0%, #c8f0ed 50%, #8eddd8 100%);
+  min-height: 100dvh;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; }
+body { background: transparent; font-family: 'DM Sans', sans-serif; color: var(--text); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; }
 
 .site-header { width: 100%; max-width: 600px; padding: 18px 20px 0; text-align: center; }
 .site-logo { font-family: 'Unbounded', sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -1px; background: linear-gradient(135deg, var(--accent), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .site-sub { font-size: 0.68rem; color: var(--text2); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; margin-bottom: 14px; }
 
-.game-nav { width: 100%; max-width: 600px; display: flex; border-bottom: 2px solid var(--border); background: var(--bg2); border-radius: 0 0 16px 16px; margin-bottom: 4px; overflow: hidden; }
-.game-tab { flex: 1; padding: 10px 4px; text-align: center; cursor: pointer; border: none; background: transparent; color: var(--text3); font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: color 0.2s, background 0.2s; position: relative; }
+.game-nav { width: 100%; max-width: 600px; display: flex; border-bottom: 2px solid var(--border); background: var(--bg2); border-radius: 0 0 16px 16px; margin-bottom: 4px; overflow: hidden; position: relative; z-index: 100; }
+.game-tab { flex: 1; padding: 10px 4px; text-align: center; cursor: pointer; border: none; background: transparent; color: var(--text3); font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: color 0.2s, background 0.2s; position: relative; z-index: 101; pointer-events: all; }
 .game-tab::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--accent); border-radius: 3px 3px 0 0; transform: scaleX(0); transition: transform 0.2s; }
 .game-tab .tab-icon { font-size: 1.2rem; line-height: 1; }
 .game-tab.active { color: var(--accent2); background: #1f0a0e44; }
@@ -37,14 +41,15 @@ body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--t
 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.7rem; color: var(--text2); }
 .leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-.stats-bar { display: flex; gap: 1px; background: var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
-.stat-seg { flex: 1; background: var(--card); padding: 10px 6px; text-align: center; }
-.stat-seg .sv { font-family: 'Unbounded', sans-serif; font-size: 1rem; font-weight: 700; color: var(--gold); }
-.stat-seg .sl { font-size: 0.58rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.stats-bar { display: flex; gap: 0; background: var(--card); border-radius: 14px; overflow: hidden; margin-bottom: 16px; border: 2px solid var(--border); box-shadow: 0 2px 12px rgba(0,150,140,0.10); }
+.stat-seg { flex: 1; background: var(--card); padding: 14px 6px; text-align: center; border-right: 1px solid var(--border); }
+.stat-seg:last-child { border-right: none; }
+.stat-seg .sv { font-family: 'Unbounded', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); }
+.stat-seg .sl { font-size: 0.58rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; }
 
 .result-box { border: 1px solid; border-radius: 16px; padding: 22px; text-align: center; margin-bottom: 16px; display: none; }
-.result-box.win { border-color: var(--green); background: #071f18; }
-.result-box.lose { border-color: var(--accent); background: #1a0808; }
+.result-box.win { border-color: var(--green); background: #d4f7ee; }
+.result-box.lose { border-color: var(--accent); background: #ffe0e0; }
 .result-emoji { font-size: 2.2rem; margin-bottom: 8px; }
 .result-title { font-family: 'Unbounded', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
 .result-answer { font-size: 0.82rem; color: var(--text2); margin-bottom: 14px; }
@@ -78,9 +83,9 @@ body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--t
 .guess-row { display: flex; align-items: center; gap: 10px; background: var(--card); border-radius: 10px; padding: 11px 13px; border: 1px solid var(--border); animation: slideIn 0.25s ease; }
 @keyframes slideIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 .guess-dot { width: 13px; height: 13px; border-radius: 50%; flex-shrink: 0; }
-.guess-dot.green { background: var(--green); box-shadow: 0 0 7px #06d6a055; }
-.guess-dot.orange { background: var(--orange); box-shadow: 0 0 7px #f4a26155; }
-.guess-dot.red { background: var(--accent); box-shadow: 0 0 7px #e6394655; }
+.guess-dot.green { background: #0a9e7a; box-shadow: 0 0 7px #06d6a055; }
+.guess-dot.orange { background: #f5a623; box-shadow: 0 0 7px #f5a62388; }
+.guess-dot.red { background: #c0222e; box-shadow: 0 0 7px #e6394655; }
 .guess-actor { font-weight: 600; font-size: 0.88rem; }
 .guess-reason { font-size: 0.7rem; color: var(--text2); margin-top: 2px; }
 
@@ -94,21 +99,21 @@ body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--t
 .wordle-cell.spacer { background: transparent; border-color: transparent; width: 8px; min-width: 8px; }
 .wordle-cell.active-cursor { border-color: var(--blue); }
 .wordle-cell.filled { border-color: var(--text3); }
-.wordle-cell.correct { background: #064e3b; border-color: var(--green); color: var(--green); animation: flipCell 0.4s ease forwards; }
-.wordle-cell.present { background: #5c3300; border-color: var(--orange); color: var(--orange); animation: flipCell 0.4s ease forwards; }
-.wordle-cell.absent  { background: var(--card2); border-color: var(--text3); color: var(--text3); animation: flipCell 0.4s ease forwards; }
+.wordle-cell.correct { background: #d4f7ee; border-color: var(--green); color: #0a7a5e; }
+.wordle-cell.present { background: #fff4d4; border-color: var(--gold); color: #a06800; }
+.wordle-cell.absent  { background: #ffe0e0; border-color: var(--accent); color: #c0222e; }
 @keyframes flipCell { 0% { transform: scaleY(1); } 50% { transform: scaleY(0.1); } 100% { transform: scaleY(1); } }
+.wordle-cell.flip { animation: flipCell 0.7s ease forwards; }
 .wordle-cell.shake { animation: shakeCell 0.4s ease; }
 @keyframes shakeCell { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-5px); } 40%,80% { transform: translateX(5px); } }
 .wordle-keyboard { display: flex; flex-direction: column; gap: 6px; }
 .kbd-row { display: flex; gap: 4px; justify-content: center; }
 .kbd-key { min-width: 30px; height: 46px; padding: 0 5px; background: var(--card2); border: 1px solid var(--border); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text); cursor: pointer; transition: background 0.15s, color 0.15s; user-select: none; touch-action: manipulation; flex-shrink: 0; }
 .kbd-key.wide { min-width: 50px; font-size: 0.62rem; }
-.kbd-key.correct { background: #064e3b; border-color: var(--green); color: var(--green); }
-.kbd-key.present { background: #5c3300; border-color: var(--orange); color: var(--orange); }
-.kbd-key.absent  { background: #1a1c24; border-color: var(--text3); color: var(--text3); }
+.kbd-key.correct { background: #d4f7ee; border-color: var(--green); color: #0a7a5e; }
+.kbd-key.present { background: #fff4d4; border-color: var(--gold); color: #a06800; }
+.kbd-key.absent  { background: #ffe0e0; border-color: var(--accent); color: #c0222e; }
 .kbd-key:active  { opacity: 0.7; transform: scale(0.94); }
-
 
 /* DİZİ ZİNCİR */
 .zincir-endpoints {
@@ -166,11 +171,10 @@ body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--t
 .tahmin-guess-row { display: grid; grid-template-columns: 1fr 80px 70px 60px; gap: 6px; animation: slideIn 0.3s ease; }
 .tahmin-cell { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 8px; text-align: center; font-size: 0.82rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 44px; }
 .tahmin-cell.name-cell { text-align: left; justify-content: flex-start; font-size: 0.78rem; }
-.tahmin-cell.correct { background: #071f18; border-color: var(--green); color: var(--green); }
-.tahmin-cell.wrong { background: #1a0808; border-color: var(--accent); color: var(--text2); }
-.tahmin-cell.close { background: #1a1000; border-color: var(--gold); color: var(--gold); }
+.tahmin-cell.correct { background: #d4f7ee; border-color: var(--green); color: #0a7a5e; }
+.tahmin-cell.wrong { background: #ffe0e0; border-color: var(--accent); color: #c0222e; }
+.tahmin-cell.close { background: #fff4d4; border-color: var(--gold); color: #a06800; }
 .cell-arrow { font-size: 0.75rem; opacity: 0.8; }
-
 
 /* TAHMİN HINTS */
 .tahmin-hint-card {
@@ -260,7 +264,6 @@ body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--t
   </button>
 </nav>
 
-<!-- OYUNCU BUL -->
 <div class="page active" id="page-actor">
   <div class="stats-bar" style="margin-top:16px">
     <div class="stat-seg"><div class="sv" id="stat-played">0</div><div class="sl">Oynanan</div></div>
@@ -295,7 +298,6 @@ body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--t
   <div class="guesses-list" id="guesses-list"></div>
 </div>
 
-<!-- DİZİ WORDLE -->
 <div class="page" id="page-wordle">
   <div class="game-title" style="margin-top:16px">🔤 Günlük Dizi Wordle</div>
   <div class="game-desc">Her gün değişen bir Türk dizisini 6 denemede bul.</div>
@@ -319,7 +321,6 @@ body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--t
   <div id="wordle-kbd-area"><div class="wordle-keyboard" id="wordle-keyboard"></div></div>
 </div>
 
-<!-- DİZİ TAHMİN -->
 <div class="page" id="page-tahmin">
   <div class="game-title" style="margin-top:16px">🎯 Günlük Dizi Tahmin</div>
   <div class="game-desc">Günün gizli dizisini tahmin et. Her tahminden sonra bilgiler karşılaştırılır. İpuçları için yeterince dene!</div>
@@ -349,7 +350,6 @@ body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--t
   </div>
 </div>
 
-<!-- KİM BU OYUNCU -->
 <div class="page" id="page-kariyer">
   <div class="game-title" style="margin-top:16px">🌟 Kim Bu Oyuncu?</div>
   <div class="game-desc">Dizileri açıldıkça gizli oyuncuyu bul. Her yanlış tahminde yeni bir dizi ipucu gelir. 6 hakkın var!</div>
@@ -369,10 +369,21 @@ body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--t
   </div>
 </div>
 
-<!-- DİZİ ZİNCİR -->
 <div class="page" id="page-zincir">
   <div class="game-title" style="margin-top:16px">🔗 Günlük Dizi Zinciri</div>
   <div class="game-desc">Başlangıç dizisinden bitiş dizisine ortak oyuncularla ulaş. Ne kadar az adımda ulaşırsan o kadar iyi!</div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:0.78rem;color:var(--text2);">
+    <div style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:8px">Örnek Zincir</div>
+    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+      <span style="background:var(--bg2);border:1px solid var(--blue);border-radius:8px;padding:4px 10px;font-weight:600;color:var(--text)">Çukur</span>
+      <span style="color:var(--text3);font-size:0.7rem">🎭 Aras Bulut İynemli</span>
+      <span style="color:var(--text3)">→</span>
+      <span style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-weight:600;color:var(--text)">Medcezir</span>
+      <span style="color:var(--text3);font-size:0.7rem">🎭 Barış Falay</span>
+      <span style="color:var(--text3)">→</span>
+      <span style="background:var(--bg2);border:1px solid var(--green);border-radius:8px;padding:4px 10px;font-weight:600;color:var(--text)">Ezel</span>
+    </div>
+  </div>
 
   <div class="zincir-stats">
     <div class="zincir-stat"><div class="zincir-stat-val" id="z-adim">0</div><div class="zincir-stat-lbl">Adım</div></div>
@@ -534,7 +545,11 @@ function showActorResult() {
     document.getElementById("actor-result-emoji").textContent = "😔";
     document.getElementById("actor-result-title").textContent = "Yarın Tekrar Dene!";
   }
-  document.getElementById("actor-result-answer").innerHTML = "Doğru: <strong style=\"color:var(--gold)\">" + actor.ad + "</strong><br><span style=\"font-size:0.75rem;color:var(--text2)\">" + shows.join(", ") + "</span>";
+  document.getElementById("actor-result-answer").innerHTML =
+    (aState.won
+      ? "<div style=\"" + "font-size:0.78rem;font-weight:600;margin-bottom:6px\"  color:var(--green)\">Doğru oyuncu:</div><div style=\"font-family:Unbounded,sans-serif;font-size:1.3rem;font-weight:900;color:var(--green);margin-bottom:8px\">" + actor.ad + "</div>"
+      : "<div style=\"font-size:0.78rem;font-weight:600;margin-bottom:6px;color:var(--accent)\">Günün oyuncusu:</div><div style=\"font-family:Unbounded,sans-serif;font-size:1.3rem;font-weight:900;color:var(--accent);margin-bottom:8px\">" + actor.ad + "</div>") +
+    "<span style=\"font-size:0.72rem;color:var(--text2)\">" + shows.join(", ") + "</span>";
   startCountdown("actor-countdown");
 }
 function evaluateGuess(guessedId) {
@@ -571,7 +586,10 @@ function makeActorGuess(actorId) {
 }
 function shareActorResult() {
   const dots = aState.guesses.map(g => g.result==="green"?"🟢":g.result==="orange"?"🟠":"🔴").join("");
-  const text = "DiziEvren 🎭 Oyuncu Bul\n" + getDayStr() + "\n" + (aState.won?aState.guesses.length+"/8":"X/8") + "\n\n" + dots + "\n#DiziEvren";
+  const actor = oyuncuMap[aState.targetId];
+  const sonuc = aState.won ? aState.guesses.length + " tahminde buldum" : "bulamadım";
+  const davet = aState.won ? "Sen kaç tahminde bulabilirsin?" : "Sen bulabilir misin?";
+  const text = "DiziEvren 🎭 Oyuncu Bul\n" + getDayStr() + "\n\n" + dots + "\n\n" + sonuc + " · " + davet + "\n" + "https://regretbutcommit.github.io/DiziEvren/";
   if (navigator.share) navigator.share({text}); else { navigator.clipboard?.writeText(text); showToast("Kopyalandı! 📋"); }
 }
 
@@ -625,7 +643,7 @@ function getLettersOnly(name) {
 }
 function trkEq(a, b) { return a.toUpperCase() === b.toUpperCase(); }
 
-function renderWordle() {
+function renderWordle(animateRow) {
   const slots = getSlots(wState.targetName);
   const letters = getLettersOnly(wState.targetName);
   document.getElementById("w-word-len").textContent = letters.length;
@@ -647,8 +665,12 @@ function renderWordle() {
         if (guessLetters) {
           const gl = guessLetters[li];
           cell.textContent = gl.char;
-          const delay = li * 80;
-          setTimeout(() => cell.classList.add(gl.state), delay);
+          if (animateRow === row) {
+            const delay = li * 150;
+            setTimeout(() => { cell.classList.add(gl.state); cell.classList.add("flip"); }, delay);
+          } else {
+            cell.classList.add(gl.state);
+          }
         } else if (isCurrent) {
           const typed = wState.currentInput[li];
           if (typed) { cell.textContent = typed; cell.classList.add("filled"); }
@@ -707,7 +729,8 @@ function submitGuess() {
   result.forEach(r => { const prev = wState.keyStates[r.char]; if (!prev || prev==="absent" || (prev==="present" && r.state==="correct")) wState.keyStates[r.char] = r.state; });
   if (result.every(r => r.state==="correct")) wState.won = true;
   else if (wState.guesses.length >= WORDLE_MAX) wState.lost = true;
-  saveWordleState(); renderWordle();
+  const justSubmittedRow = wState.guesses.length - 1;
+  saveWordleState(); renderWordle(justSubmittedRow);
 }
 function shakeRow(rowIdx) {
   const row = document.getElementById("wrow-" + rowIdx);
@@ -725,12 +748,17 @@ function showWordleResult() {
     document.getElementById("w-result-emoji").textContent = "😔";
     document.getElementById("w-result-title").textContent = "Olmadı!";
   }
-  document.getElementById("w-result-answer").innerHTML = (wState.won ? wState.guesses.length + ". denemede: " : "Cevap: ") + "<strong style=\"color:var(--gold)\">" + wState.targetName + "</strong>";
+  document.getElementById("w-result-answer").innerHTML =
+    (wState.won
+      ? "<div style=\"font-size:0.78rem;font-weight:600;margin-bottom:6px;color:var(--green)\">Doğru dizi:</div><div style=\"font-family:Unbounded,sans-serif;font-size:1.3rem;font-weight:900;color:var(--green);margin-bottom:8px\">" + wState.targetName + "</div>" + wState.guesses.length + ". denemede buldun!"
+      : "<div style=\"font-size:0.78rem;font-weight:600;margin-bottom:6px;color:var(--accent)\">Günün dizisi:</div><div style=\"font-family:Unbounded,sans-serif;font-size:1.3rem;font-weight:900;color:var(--accent);margin-bottom:8px\">" + wState.targetName + "</div>");
   startCountdown("w-countdown");
 }
 function shareWordleResult() {
   const rows = wState.guesses.map(r => r.map(l => l.state==="correct"?"🟩":l.state==="present"?"🟧":"⬛").join("")).join("\n");
-  const text = "DiziEvren 🔤 Dizi Wordle\n" + getDayStr() + "\n" + (wState.won?wState.guesses.length:"X") + "/" + WORDLE_MAX + "\n\n" + rows + "\n#DiziEvren";
+  const sonuc = wState.won ? wState.guesses.length + "/" + WORDLE_MAX + " denemede buldum" : "bulamadım";
+  const davet = wState.won ? "Sen kaç denemede bulabilirsin?" : "Sen bulabilir misin?";
+  const text = "DiziEvren 🔤 Dizi Wordle\n" + getDayStr() + "\n\n" + rows + "\n\n" + sonuc + " · " + davet + "\n" + "https://regretbutcommit.github.io/DiziEvren/";
   if (navigator.share) navigator.share({text}); else { navigator.clipboard?.writeText(text); showToast("Kopyalandı! 📋"); }
 }
 document.addEventListener("keydown", e => {
@@ -877,10 +905,15 @@ function showTahminResult() {
     document.getElementById("t-result-title").textContent = tState.guesses.length<=2?"Efsane!":tState.guesses.length<=5?"Harika!":"Tebrikler!";
   } else {
     box.className = "result-box lose";
-    document.getElementById("t-result-emoji").textContent = "😔";
-    document.getElementById("t-result-title").textContent = "Olmadı!";
+    document.getElementById("t-result-emoji").textContent = "🎬";
+    document.getElementById("t-result-title").innerHTML = '<span style="font-size:0.9rem;color:var(--accent);font-weight:700">Olmadı!</span>';
   }
-  document.getElementById("t-result-answer").innerHTML = (tState.won?tState.guesses.length+". denemede: ":"Cevap: ") + "<strong style=\"color:var(--gold)\">" + target.ad + "</strong><br><span style=\"font-size:0.72rem;color:var(--text2)\">" + target.kanal + " · " + target.yil + " · " + target.bolum + " bölüm</span>";
+  const answerEl = document.getElementById("t-result-answer");
+  if (tState.won) {
+    answerEl.innerHTML = tState.guesses.length + ". denemede: <strong style=\"color:var(--gold);font-size:1.2rem\">" + target.ad + "</strong><br><span style=\"font-size:0.72rem;color:var(--text2)\">" + target.kanal + " · " + target.yil + " · " + target.bolum + " bölüm</span>";
+  } else {
+    answerEl.innerHTML = "<div style=\"margin-bottom:6px;font-size:0.78rem;color:var(--accent);font-weight:600\">Günün dizisi:</div><div style=\"font-family:Unbounded,sans-serif;font-size:1.3rem;font-weight:900;color:var(--accent);margin-bottom:8px\">" + target.ad + "</div><span style=\"font-size:0.72rem;color:var(--text2)\">" + target.kanal + " · " + target.yil + " · " + target.bolum + " bölüm</span>";
+  }
   startCountdown("t-countdown");
 }
 function makeTahminGuess(idx) {
@@ -896,8 +929,10 @@ function makeTahminGuess(idx) {
 function shareTahminResult() {
   const target = DIZI_DB[tState.targetIdx];
   const rows = tState.guesses.map(g => { const d=DIZI_DB[g.idx]; return (d.kanal===target.kanal?"🟢":"🔴")+(Math.abs(d.yil-target.yil)===0?"🟢":Math.abs(d.yil-target.yil)<=1?"🟡":"🔴")+(d.bolum===target.bolum?"🟢":Math.abs(d.bolum-target.bolum)<=Math.max(target.bolum*0.15,5)?"🟡":"🔴"); }).join("\n");
-  const hintStr = tState.hintsUsed.length > 0 ? "\n💡 " + tState.hintsUsed.length + " ipucu kullandı" : "";
-  const text = "DiziEvren 🎯 Dizi Tahmin\n" + getDayStr() + "\n" + (tState.won?tState.guesses.length+" denemede":"Pes etti") + hintStr + "\n\n" + rows + "\n#DiziEvren";
+  const hintStr = tState.hintsUsed.length > 0 ? " · " + tState.hintsUsed.length + " ipucu kullandım" : "";
+  const sonuc = tState.won ? tState.guesses.length + " tahminde buldum" + hintStr : "pes ettim";
+  const davet = tState.won ? "Sen kaç tahminde bulabilirsin?" : "Sen bulabilir misin?";
+  const text = "DiziEvren 🎯 Dizi Tahmin\n" + getDayStr() + "\n\n" + rows + "\n\n" + sonuc + " · " + davet + "\n" + "https://regretbutcommit.github.io/DiziEvren/";
   if (navigator.share) navigator.share({text}); else { navigator.clipboard?.writeText(text); showToast("Kopyalandı! 📋"); }
 }
 document.getElementById("tahmin-input").addEventListener("input", function() {
@@ -983,7 +1018,11 @@ function showKariyerResult() {
     document.getElementById("k-result-emoji").textContent = "😔";
     document.getElementById("k-result-title").textContent = "Olmadı!";
   }
-  document.getElementById("k-result-answer").innerHTML = (kState.won?kState.guesses.length+". denemede: ":"Cevap: ") + "<strong style=\"color:var(--gold)\">" + actor.ad + "</strong><br><span style=\"font-size:0.72rem;color:var(--text2)\">" + diziler.map(d=>d.ad).join(" · ") + "</span>";
+  document.getElementById("k-result-answer").innerHTML =
+    (kState.won
+      ? "<div style=\"font-size:0.78rem;font-weight:600;margin-bottom:6px;color:var(--green)\">Doğru oyuncu:</div><div style=\"font-family:Unbounded,sans-serif;font-size:1.3rem;font-weight:900;color:var(--green);margin-bottom:8px\">" + actor.ad + "</div>"
+      : "<div style=\"font-size:0.78rem;font-weight:600;margin-bottom:6px;color:var(--accent)\">Günün oyuncusu:</div><div style=\"font-family:Unbounded,sans-serif;font-size:1.3rem;font-weight:900;color:var(--accent);margin-bottom:8px\">" + actor.ad + "</div>") +
+    "<span style=\"font-size:0.72rem;color:var(--text2)\">" + diziler.map(d=>d.ad).join(" · ") + "</span>";
   startCountdown("k-countdown");
 }
 function makeKariyerGuess(actorId, actorName) {
@@ -999,7 +1038,9 @@ function makeKariyerGuess(actorId, actorName) {
 }
 function shareKariyerResult() {
   const dots = Array.from({length:KARIYER_MAX},(_,i)=>{const g=kState.guesses[i];return !g?"⬜":g.correct?"🟢":"🔴";}).join("");
-  const text = "DiziEvren 🌟 Kim Bu Oyuncu?\n" + getDayStr() + "\n" + (kState.won?kState.guesses.length+"/"+KARIYER_MAX:"X/"+KARIYER_MAX) + "\n\n" + dots + "\n#DiziEvren";
+  const sonuc = kState.won ? kState.guesses.length + " tahminde buldum" : "bulamadım";
+  const davet = kState.won ? "Sen kaç tahminde bulabilirsin?" : "Sen bulabilir misin?";
+  const text = "DiziEvren 🌟 Kim Bu Oyuncu?\n" + getDayStr() + "\n\n" + dots + "\n\n" + sonuc + " · " + davet + "\n" + "https://regretbutcommit.github.io/DiziEvren/";
   if (navigator.share) navigator.share({text}); else { navigator.clipboard?.writeText(text); showToast("Kopyalandı! 📋"); }
 }
 document.getElementById("kariyer-input").addEventListener("input", function() {
@@ -1151,8 +1192,9 @@ function showZincirResult() {
   document.getElementById("z-result-emoji").textContent = steps <= pair.minSteps ? "🏆" : steps <= pair.minSteps + 1 ? "🌟" : "🎬";
   document.getElementById("z-result-title").textContent = steps <= pair.minSteps ? "Mükemmel! En kısa zincir!" : steps <= pair.minSteps + 1 ? "Harika!" : "Tebrikler!";
   document.getElementById("z-result-answer").innerHTML =
-    steps + " adımda tamamladın · Minimum " + pair.minSteps + " adım<br>" +
-    '<span style="font-size:0.72rem;color:var(--text2)">' + zState.chain.map(id => diziMap[id]?.ad).join(" → ") + "</span>";
+    "<div style=\"font-family:Unbounded,sans-serif;font-size:1.3rem;font-weight:900;color:var(--green);margin-bottom:8px\">" + steps + " adım</div>" +
+    "<div style=\"font-size:0.78rem;font-weight:600;margin-bottom:6px;color:var(--text2);margin-bottom:6px\">Minimum " + pair.minSteps + " adım mümkündü</div>" +
+    "<span style=\"font-size:0.72rem;color:var(--text2)\">" + zState.chain.map(id => diziMap[id]?.ad).join(" → ") + "</span>";
   startCountdown("z-countdown");
 }
 
@@ -1180,7 +1222,9 @@ function shareZincirResult() {
   const pair = ZINCIR_PAIRS[zState.pairIdx];
   const steps = zState.chain.length - 1;
   const emoji = steps <= pair.minSteps ? "🏆" : steps <= pair.minSteps+1 ? "🌟" : "✅";
-  const text = "DiziEvren 🔗 Dizi Zinciri\n" + getDayStr() + "\n" + emoji + " " + steps + " adım (min " + pair.minSteps + ")\n\n" + zState.chain.map(id=>diziMap[id]?.ad).join(" → ") + "\n#DiziEvren";
+  const sonuc = steps <= pair.minSteps ? "minimum " + steps + " adımda tamamladım " + emoji : steps + " adımda tamamladım (min " + pair.minSteps + " adım mümkündü)";
+  const davet = "Sen daha kısa zincir kurabilir misin?";
+  const text = "DiziEvren 🔗 Dizi Zinciri\n" + getDayStr() + "\n\n" + zState.chain.map(id=>diziMap[id]?.ad).join(" → ") + "\n\n" + sonuc + " · " + davet + "\n" + "https://regretbutcommit.github.io/DiziEvren/";
   if (navigator.share) navigator.share({text}); else { navigator.clipboard?.writeText(text); showToast("Kopyalandı! 📋"); }
 }
 
@@ -1215,6 +1259,8 @@ document.addEventListener("click", e => {
 // ============================================================
 loadActorState(); renderActor();
 loadWordleState(); renderWordle();
+
+
 loadTahminState(); renderTahmin();
 loadKariyerState(); renderKariyer();
 loadZincirState(); renderZincir();
